@@ -57,6 +57,24 @@ func (arr Array[T]) PopulateWithRandomValues() Array[T] {
 	return arr
 }
 
+// PopulateAndSortOneThirds is a method that populates the array with 1/3 ascending and 2/3 random values
+func (arr Array[T]) PopulateAndSortOneThirds() Array[T] {
+	arr.PopulateWithRandomValues()
+	slices.Sort(arr)
+	oneThird := len(arr) / 3
+
+	return append(arr[:oneThird], arr[oneThird:].scramble()...)
+}
+
+// PopulateAndSortTwoThirds is a method that populates the array with 2/3 ascending and 1/3 random values
+func (arr Array[T]) PopulateAndSortTwoThirds() Array[T] {
+	arr.PopulateWithRandomValues()
+	slices.Sort(arr)
+	oneThird := 2 * len(arr) / 3
+
+	return append(arr[:oneThird], arr[oneThird:].scramble()...)
+}
+
 // PopulateWithAscendingValues is a method that populates the array with ascending values
 func (arr Array[T]) PopulateWithAscendingValues() Array[T] {
 	arr.PopulateWithRandomValues()
@@ -70,6 +88,16 @@ func (arr Array[T]) PopulateWithDescendingValues() Array[T] {
 	arr.PopulateWithRandomValues()
 	slices.Sort(arr)
 	slices.Reverse(arr)
+
+	return arr
+}
+
+// scramble is a method that scrambles array
+func (arr Array[T]) scramble() Array[T] {
+	for i := 0; i < len(arr); i++ {
+		j := rand.IntN(len(arr))
+		arr.Swap(i, j)
+	}
 
 	return arr
 }

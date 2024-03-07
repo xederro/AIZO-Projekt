@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// TTH is a struct that represents a test harness.
 type TTH struct {
 	repeat int
 	sizes  []int
@@ -15,6 +16,10 @@ type TTH struct {
 
 // NewTimeTestHarness creates a new TimeTestHarness with the given number of repetitions.
 func NewTimeTestHarness(repeat int, testSize ...int) *TTH {
+	if len(testSize) == 0 {
+		testSize = []int{0}
+	}
+
 	return &TTH{
 		repeat: repeat,
 		sizes:  testSize,
@@ -39,7 +44,10 @@ func (test *TTH) Exec() {
 				t.time += dur
 				t.after(t.name, i, size, dur, m)
 			}
-			fmt.Printf("%s;%d;%d\n", t.name, size, t.time.Nanoseconds()/int64(test.repeat))
+
+			if t.print {
+				fmt.Printf("%s;%d;%d\n", t.name, size, t.time.Nanoseconds()/int64(test.repeat))
+			}
 		}
 	}
 }

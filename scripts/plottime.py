@@ -22,20 +22,15 @@ def read_csv(file_path):
     return data
 
 def format_time_ticks(x, pos):
-    duration_s = x / 1e9
+    units = ['ns', 'μs', 'ms', 's', 'min', 'hr', 'day']
+    conversions = [1, 1000, 1000, 1000, 60, 60, 24]
 
-    if duration_s < 1e-3:
-        return f"{x} ns"
-    elif duration_s < 1e-3:
-        return f"{x / 1e3:.2f} µs"
-    elif duration_s < 1:
-        return f"{duration_s * 1e3:.2f} ms"
-    elif duration_s < 60:
-        return f"{duration_s:.2f} s"
-    elif duration_s < 3600:
-        return f"{duration_s / 60:.2f} m"
-    else:
-        return f"{duration_s / 3600:.2f} h"
+    unit_index = 0
+    while x >= 1000 and unit_index < len(units) - 1:
+        x /= 1000
+        unit_index += 1
+
+    return f"{x:.2f} {units[unit_index]}"
 
 
 def plot_data(data, save_folder):

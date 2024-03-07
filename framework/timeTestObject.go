@@ -10,15 +10,17 @@ type TTO struct {
 	measure func(data any) any
 	after   func(name string, nr int, testSize int, time time.Duration, data any)
 	time    time.Duration
+	print   bool
 }
 
 // NewTTO creates a new TTO object.
-func NewTTO(name string) *TTO {
+func NewTTO(name string, print bool) *TTO {
 	return &TTO{
 		name:    name,
 		before:  Before,
 		measure: Measure,
 		after:   After,
+		print:   print,
 	}
 }
 
@@ -40,20 +42,20 @@ func (test *TTO) SetMeasure(sm func(data any) any) *TTO {
 	return test
 }
 
+// Before runs before the test.
 func Before(size int) any {
 	// Do nothing before
 	return nil
 }
 
+// Measure is the function to be measured
 func Measure(data any) any {
 	// Do nothing
 	return nil
 }
 
+// After runs after the test.
 func After(name string, nr int, testSize int, time time.Duration, data any) {
-	//if data == nil {
-	//	fmt.Printf("%s;%d;%d;%d\n", name, testSize, nr, time)
-	//} else {
-	//	fmt.Println(testSize, nr, time, data)
-	//}
+	// Do nothing
+	return
 }

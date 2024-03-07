@@ -4,52 +4,103 @@ import (
 	"AIZO-Projekt/algo"
 	"AIZO-Projekt/algo/sort"
 	"AIZO-Projekt/framework"
-	"sync"
+)
+
+var (
+	testCount = 10
+	testSizes = []int{1000, 2000, 4000, 8000, 16000, 32000, 64000}
 )
 
 func main() {
-	wg := sync.WaitGroup{}
+	// run tests for QuickSort with set data
+	//test := []int32{12, 13, 0, 14, 15, 16, 17, 3, 2, 1, 4, 5, 6, 7, 8, 9, 10, 11, 18, 19, 20, 21, 22, 23, 24}
+	//framework.NewTimeTestHarness(1).
+	//	AddTest(
+	//		framework.NewTTO("Custom test", false).
+	//			SetBefore(func(size int) any {
+	//				return sort.NewQuickSort[int32](
+	//					test,
+	//				).SetPivotCalcFunc(sort.Middle)
+	//			}).
+	//			SetMeasure(func(data any) any {
+	//				return data.(*sort.QuickSort[int32]).Sort()
+	//			}).
+	//			SetAfter(func(name string, nr int, testSize int, time time.Duration, data any) {
+	//				fmt.Println(time)
+	//				fmt.Println(test)
+	//				fmt.Println(data)
+	//			}),
+	//	).
+	//	Exec()
 
-	//run tests for QuickSort with different types and pivot selection strategies
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
+	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Middle Pivot").
+			framework.NewTTO("QuickSort Int32 Middle Pivot", true).
 				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int32](algo.NewArray[int32](size).PopulateWithRandomValues())
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateWithRandomValues(),
+					)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Sorted Ascending Middle Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted Ascending Middle Pivot", true).
 				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int32](algo.NewArray[int32](size).PopulateWithAscendingValues())
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateWithAscendingValues(),
+					)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Sorted Descending Middle Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted Descending Middle Pivot", true).
 				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int32](algo.NewArray[int32](size).PopulateWithDescendingValues())
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateWithDescendingValues(),
+					)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 First Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted 1 over 3 Middle Pivot", true).
+				SetBefore(func(size int) any {
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateAndSortOneThirds(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(sort.QuickSort[int32]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("QuickSort Int32 Sorted 2 over 3 Middle Pivot", true).
+				SetBefore(func(size int) any {
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateAndSortTwoThirds(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(sort.QuickSort[int32]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("QuickSort Int32 First Pivot", true).
 				SetBefore(func(size int) any {
 					return sort.NewQuickSort[int32](
 						algo.NewArray[int32](size).
@@ -57,12 +108,12 @@ func main() {
 					).SetPivotCalcFunc(sort.First)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Sorted Ascending First Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted Ascending First Pivot", true).
 				SetBefore(func(size int) any {
 					return sort.NewQuickSort[int32](
 						algo.NewArray[int32](size).
@@ -70,12 +121,12 @@ func main() {
 					).SetPivotCalcFunc(sort.First)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Sorted Descending First Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted Descending First Pivot", true).
 				SetBefore(func(size int) any {
 					return sort.NewQuickSort[int32](
 						algo.NewArray[int32](size).
@@ -83,16 +134,38 @@ func main() {
 					).SetPivotCalcFunc(sort.First)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Last Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted 1 over 3 First Pivot", true).
+				SetBefore(func(size int) any {
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateAndSortOneThirds(),
+					).SetPivotCalcFunc(sort.First)
+				}).
+				SetMeasure(func(data any) any {
+					data.(sort.QuickSort[int32]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("QuickSort Int32 Sorted 2 over 3 First Pivot", true).
+				SetBefore(func(size int) any {
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateAndSortTwoThirds(),
+					).SetPivotCalcFunc(sort.First)
+				}).
+				SetMeasure(func(data any) any {
+					data.(sort.QuickSort[int32]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("QuickSort Int32 Last Pivot", true).
 				SetBefore(func(size int) any {
 					return sort.NewQuickSort[int32](
 						algo.NewArray[int32](size).
@@ -100,12 +173,12 @@ func main() {
 					).SetPivotCalcFunc(sort.Last)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Sorted Ascending Last Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted Ascending Last Pivot", true).
 				SetBefore(func(size int) any {
 					return sort.NewQuickSort[int32](
 						algo.NewArray[int32](size).
@@ -113,12 +186,12 @@ func main() {
 					).SetPivotCalcFunc(sort.Last)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int32 Sorted Descending Last Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted Descending Last Pivot", true).
 				SetBefore(func(size int) any {
 					return sort.NewQuickSort[int32](
 						algo.NewArray[int32](size).
@@ -126,373 +199,44 @@ func main() {
 					).SetPivotCalcFunc(sort.Last)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int32]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](algo.NewArray[int64](size).PopulateWithRandomValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int64 Sorted Ascending Middle Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted 1 over 3 Last Pivot", true).
 				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](algo.NewArray[int64](size).PopulateWithAscendingValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 Sorted Descending Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](algo.NewArray[int64](size).PopulateWithDescendingValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](
-						algo.NewArray[int64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 Sorted Ascending First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](
-						algo.NewArray[int64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 Sorted Descending First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](
-						algo.NewArray[int64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](
-						algo.NewArray[int64](size).
-							PopulateWithDescendingValues(),
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateAndSortOneThirds(),
 					).SetPivotCalcFunc(sort.Last)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort Int64 Sorted Ascending Last Pivot").
+			framework.NewTTO("QuickSort Int32 Sorted 2 over 3 Last Pivot", true).
 				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](
-						algo.NewArray[int64](size).
-							PopulateWithDescendingValues(),
+					return sort.NewQuickSort[int32](
+						algo.NewArray[int32](size).
+							PopulateAndSortTwoThirds(),
 					).SetPivotCalcFunc(sort.Last)
 				}).
 				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
+					data.(sort.QuickSort[int32]).Sort()
 					return nil
 				}),
 		).
-		AddTest(
-			framework.NewTTO("QuickSort Int64 Sorted Descending Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[int64](
-						algo.NewArray[int64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[int64]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
+		Exec()
 
-	wg.Wait()
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](algo.NewArray[float32](size).PopulateWithRandomValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Sorted Ascending Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](algo.NewArray[float32](size).PopulateWithAscendingValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Sorted Descending Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](algo.NewArray[float32](size).PopulateWithDescendingValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort float32 First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](
-						algo.NewArray[float32](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Sorted Ascending First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](
-						algo.NewArray[float32](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Sorted Descending First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](
-						algo.NewArray[float32](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](
-						algo.NewArray[float32](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Sorted Ascending Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](
-						algo.NewArray[float32](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float32 Sorted Descending Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float32](
-						algo.NewArray[float32](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float32]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](algo.NewArray[float64](size).PopulateWithRandomValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Sorted Ascending Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](algo.NewArray[float64](size).PopulateWithAscendingValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Sorted Descending Middle Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](algo.NewArray[float64](size).PopulateWithDescendingValues())
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort float64 First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](
-						algo.NewArray[float64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Sorted Ascending First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](
-						algo.NewArray[float64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Sorted Descending First Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](
-						algo.NewArray[float64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.First)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Add(1)
-	go framework.NewTimeTestHarness(10, 1000, 2000, 5000, 10000, 20000, 50000, 100000).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](
-						algo.NewArray[float64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Sorted Ascending Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](
-						algo.NewArray[float64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		AddTest(
-			framework.NewTTO("QuickSort float64 Sorted Descending Last Pivot").
-				SetBefore(func(size int) any {
-					return sort.NewQuickSort[float64](
-						algo.NewArray[float64](size).
-							PopulateWithDescendingValues(),
-					).SetPivotCalcFunc(sort.Last)
-				}).
-				SetMeasure(func(data any) any {
-					data.(*sort.QuickSort[float64]).Sort()
-					return nil
-				}),
-		).
-		ExecWG(&wg)
-
-	wg.Wait()
+	//for range 1000 {
+	//	arr := algo.NewArray[int32](1000).PopulateWithRandomValues()
+	//	test := sort.NewQuickSort[int32](arr)
+	//	start := time.Now()
+	//	test.Sort()
+	//	dur := time.Since(start)
+	//	fmt.Println(dur.Nanoseconds(), slices.IsSorted(test.Arr))
+	//}
 }
