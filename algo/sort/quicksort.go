@@ -1,7 +1,10 @@
 // Package sort Description: This package contains the implementation of the quicksort algorithm.
 package sort
 
-import "AIZO-Projekt/algo"
+import (
+	"AIZO-Projekt/algo"
+	"math/rand"
+)
 
 // QuickSort Description: This struct contains the copy of array.
 type QuickSort[T algo.AllowedTypes] struct {
@@ -75,4 +78,9 @@ func First(lo int, hi int) int {
 // Middle Description: This function returns the index of the middle element.
 func Middle(lo int, hi int) int {
 	return (hi + lo) / 2
+}
+
+// Random Description: This function returns the index of the middle element.
+func Random(lo int, hi int) int {
+	return rand.Intn(hi-lo) + lo
 }

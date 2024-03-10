@@ -55,5 +55,7 @@ func (test *TTH) Exec() {
 // ExecWG executes the test harness with a wait group.
 func (test *TTH) ExecWG(wg *sync.WaitGroup) {
 	test.Exec()
-	wg.Done()
+	if wg != nil {
+		wg.Done()
+	}
 }
