@@ -1,19 +1,17 @@
 package main
 
 import (
-	"AIZO-Projekt/algo/sort"
 	"AIZO-Projekt/framework"
 	"sync"
 )
 
 var (
 	testCount = 100
-	testSizes = []int{1000, 2000, 4000, 8000, 16000, 32000, 64000}
+	testSizes = []int{10000, 20000, 40000, 80000, 160000, 320000, 640000}
 )
 
 func main() {
 	// run tests for QuickSort with set data
-	//test := []int32{12, 13, 0, 14, 15, 16, 17, 3, 2, 1, 4, 5, 6, 7, 8, 9, 10, 11, 18, 19, 20, 21, 22, 23, 24}
 	//framework.NewTimeTestHarness(1).
 	//	AddTest(
 	//		framework.NewTTO("Custom test", false).
@@ -38,17 +36,29 @@ func main() {
 			SetMeasure(func(data any) any {
 				wg := sync.WaitGroup{}
 
-				wg.Add(1)
-				go sort.TestInsertionSort[int32](&wg, "int32", testCount, testSizes...)
+				//wg.Add(1)
+				//go sort.TestHeapSort[int32](&wg, "int32", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestHeapSort[int64](&wg, "int64", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestHeapSort[float32](&wg, "float32", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestHeapSort[float64](&wg, "float64", testCount, testSizes...)
 
-				wg.Add(1)
-				go sort.TestInsertionSort[int64](&wg, "int64", testCount, testSizes...)
-
-				wg.Add(1)
-				go sort.TestInsertionSort[float32](&wg, "float32", testCount, testSizes...)
-
-				wg.Add(1)
-				go sort.TestInsertionSort[float64](&wg, "float64", testCount, testSizes...)
+				//wg.Add(1)
+				//go sort.TestInsertionSort[int32](&wg, "int32", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestInsertionSort[int64](&wg, "int64", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestInsertionSort[float32](&wg, "float32", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestInsertionSort[float64](&wg, "float64", testCount, testSizes...)
 
 				//wg.Add(1)
 				//go sort.TestQuickSort[int32](&wg, "int32", testCount, testSizes...)

@@ -3,6 +3,7 @@ package sort
 import (
 	"AIZO-Projekt/algo"
 	"AIZO-Projekt/framework"
+	"slices"
 	"sync"
 )
 
@@ -335,6 +336,84 @@ func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string,
 				}).
 				SetMeasure(func(data any) any {
 					data.(InsertionSort[T]).Sort()
+					return nil
+				}),
+		).
+		ExecWG(wg)
+}
+
+func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
+	framework.NewTimeTestHarness(testCount, testSizes...).
+		AddTest(
+			framework.NewTTO("HeapSort "+typeName, true).
+				SetBefore(func(size int) any {
+					return NewHeapSort[T](
+						algo.NewArray[T](size).
+							PopulateWithRandomValues(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(HeapSort[T]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("HeapSort "+typeName+" Sorted Ascending", true).
+				SetBefore(func(size int) any {
+					return NewHeapSort[T](
+						algo.NewArray[T](size).
+							PopulateWithAscendingValues(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					if !slices.IsSorted(data.(HeapSort[T]).Sort()) {
+						panic("Not sorted")
+					}
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("HeapSort "+typeName+" Sorted Descending", true).
+				SetBefore(func(size int) any {
+					return NewHeapSort[T](
+						algo.NewArray[T](size).
+							PopulateWithDescendingValues(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					if !slices.IsSorted(data.(HeapSort[T]).Sort()) {
+						panic("Not sorted")
+					}
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("HeapSort "+typeName+" Sorted 1 over 3", true).
+				SetBefore(func(size int) any {
+					return NewHeapSort[T](
+						algo.NewArray[T](size).
+							PopulateAndSortOneThirds(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					if !slices.IsSorted(data.(HeapSort[T]).Sort()) {
+						panic("Not sorted")
+					}
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("HeapSort "+typeName+" Sorted 2 over 3", true).
+				SetBefore(func(size int) any {
+					return NewHeapSort[T](
+						algo.NewArray[T](size).
+							PopulateAndSortTwoThirds(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					if !slices.IsSorted(data.(HeapSort[T]).Sort()) {
+						panic("Not sorted")
+					}
 					return nil
 				}),
 		).
