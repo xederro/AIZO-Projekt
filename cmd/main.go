@@ -39,17 +39,29 @@ func main() {
 				wg := sync.WaitGroup{}
 
 				wg.Add(1)
-				go sort.TestQuickSort[int32](&wg, "int32", testCount, testSizes...)
+				go sort.TestInsertionSort[int32](&wg, "int32", testCount, testSizes...)
 
 				wg.Add(1)
-				go sort.TestQuickSort[int64](&wg, "int64", testCount, testSizes...)
+				go sort.TestInsertionSort[int64](&wg, "int64", testCount, testSizes...)
 
 				wg.Add(1)
-				go sort.TestQuickSort[float32](&wg, "float32", testCount, testSizes...)
+				go sort.TestInsertionSort[float32](&wg, "float32", testCount, testSizes...)
 
 				wg.Add(1)
-				go sort.TestQuickSort[float64](&wg, "float64", testCount, testSizes...)
+				go sort.TestInsertionSort[float64](&wg, "float64", testCount, testSizes...)
 
+				//wg.Add(1)
+				//go sort.TestQuickSort[int32](&wg, "int32", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestQuickSort[int64](&wg, "int64", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestQuickSort[float32](&wg, "float32", testCount, testSizes...)
+				//
+				//wg.Add(1)
+				//go sort.TestQuickSort[float64](&wg, "float64", testCount, testSizes...)
+				//
 				wg.Wait()
 				return nil
 			}),

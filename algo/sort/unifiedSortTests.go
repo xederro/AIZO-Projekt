@@ -7,7 +7,6 @@ import (
 )
 
 func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
-
 	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
 			framework.NewTTO("QuickSort "+typeName+" Middle Pivot", true).
@@ -144,7 +143,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetBefore(func(size int) any {
 					return NewQuickSort[T](
 						algo.NewArray[T](size).
-							PopulateWithDescendingValues(),
+							PopulateWithRandomValues(),
 					).SetPivotCalcFunc(First)
 				}).
 				SetMeasure(func(data any) any {
@@ -157,7 +156,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetBefore(func(size int) any {
 					return NewQuickSort[T](
 						algo.NewArray[T](size).
-							PopulateWithDescendingValues(),
+							PopulateWithAscendingValues(),
 					).SetPivotCalcFunc(First)
 				}).
 				SetMeasure(func(data any) any {
@@ -209,7 +208,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetBefore(func(size int) any {
 					return NewQuickSort[T](
 						algo.NewArray[T](size).
-							PopulateWithDescendingValues(),
+							PopulateWithRandomValues(),
 					).SetPivotCalcFunc(Last)
 				}).
 				SetMeasure(func(data any) any {
@@ -222,7 +221,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetBefore(func(size int) any {
 					return NewQuickSort[T](
 						algo.NewArray[T](size).
-							PopulateWithDescendingValues(),
+							PopulateWithAscendingValues(),
 					).SetPivotCalcFunc(Last)
 				}).
 				SetMeasure(func(data any) any {
@@ -266,6 +265,76 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				}).
 				SetMeasure(func(data any) any {
 					data.(QuickSort[T]).Sort()
+					return nil
+				}),
+		).
+		ExecWG(wg)
+}
+
+func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
+	framework.NewTimeTestHarness(testCount, testSizes...).
+		AddTest(
+			framework.NewTTO("InsertionSort "+typeName, true).
+				SetBefore(func(size int) any {
+					return NewInsertionSort[T](
+						algo.NewArray[T](size).
+							PopulateWithRandomValues(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(InsertionSort[T]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("InsertionSort "+typeName+" Sorted Ascending", true).
+				SetBefore(func(size int) any {
+					return NewInsertionSort[T](
+						algo.NewArray[T](size).
+							PopulateWithAscendingValues(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(InsertionSort[T]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("InsertionSort "+typeName+" Sorted Descending", true).
+				SetBefore(func(size int) any {
+					return NewInsertionSort[T](
+						algo.NewArray[T](size).
+							PopulateWithDescendingValues(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(InsertionSort[T]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("InsertionSort "+typeName+" Sorted 1 over 3", true).
+				SetBefore(func(size int) any {
+					return NewInsertionSort[T](
+						algo.NewArray[T](size).
+							PopulateAndSortOneThirds(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(InsertionSort[T]).Sort()
+					return nil
+				}),
+		).
+		AddTest(
+			framework.NewTTO("InsertionSort "+typeName+" Sorted 2 over 3", true).
+				SetBefore(func(size int) any {
+					return NewInsertionSort[T](
+						algo.NewArray[T](size).
+							PopulateAndSortTwoThirds(),
+					)
+				}).
+				SetMeasure(func(data any) any {
+					data.(InsertionSort[T]).Sort()
 					return nil
 				}),
 		).
