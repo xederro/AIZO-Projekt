@@ -1,5 +1,4 @@
-// Package sort Description: This package contains the implementation of the quicksort algorithm.
-package sort
+package quicksort
 
 import (
 	"AIZO-Projekt/algo"

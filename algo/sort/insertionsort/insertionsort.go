@@ -1,4 +1,4 @@
-package sort
+package insertionsort
 
 import "AIZO-Projekt/algo"
 

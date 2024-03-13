@@ -1,4 +1,4 @@
-package sort
+package shellsort
 
 import (
 	"AIZO-Projekt/algo"
