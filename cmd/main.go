@@ -1,13 +1,10 @@
 package main
 
-import (
-	"AIZO-Projekt/framework"
-	"sync"
-)
+import "AIZO-Projekt/algo/sort"
 
 var (
 	testCount = 100
-	testSizes = []int{10000, 20000, 40000, 80000, 160000, 320000, 640000}
+	testSizes = []int{1000, 2000, 4000, 8000, 16000, 32000, 64000}
 )
 
 func main() {
@@ -31,49 +28,16 @@ func main() {
 	//	).
 	//	Exec()
 
-	framework.NewTimeTestHarness(1, 1).AddTest(
-		framework.NewTTO("App", true).
-			SetMeasure(func(data any) any {
-				wg := sync.WaitGroup{}
-
-				//wg.Add(1)
-				//go sort.TestHeapSort[int32](&wg, "int32", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestHeapSort[int64](&wg, "int64", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestHeapSort[float32](&wg, "float32", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestHeapSort[float64](&wg, "float64", testCount, testSizes...)
-
-				//wg.Add(1)
-				//go sort.TestInsertionSort[int32](&wg, "int32", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestInsertionSort[int64](&wg, "int64", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestInsertionSort[float32](&wg, "float32", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestInsertionSort[float64](&wg, "float64", testCount, testSizes...)
-
-				//wg.Add(1)
-				//go sort.TestQuickSort[int32](&wg, "int32", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestQuickSort[int64](&wg, "int64", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestQuickSort[float32](&wg, "float32", testCount, testSizes...)
-				//
-				//wg.Add(1)
-				//go sort.TestQuickSort[float64](&wg, "float64", testCount, testSizes...)
-				//
-				wg.Wait()
-				return nil
-			}),
-	).Exec()
+	//sort.TestHeapSort[int32](nil, "int32", testCount, testSizes...)
+	//sort.TestHeapSort[int64](nil, "int64", testCount, testSizes...)
+	//sort.TestHeapSort[float32](nil, "float32", testCount, testSizes...)
+	//sort.TestHeapSort[float64](nil, "float64", testCount, testSizes...)
+	//sort.TestInsertionSort[int32](nil, "int32", testCount, testSizes...)
+	//sort.TestInsertionSort[int64](nil, "int64", testCount, testSizes...)
+	//sort.TestInsertionSort[float32](nil, "float32", testCount, testSizes...)
+	//sort.TestInsertionSort[float64](nil, "float64", testCount, testSizes...)
+	sort.TestQuickSort[int32](nil, "int32", testCount, testSizes...)
+	//sort.TestQuickSort[int64](nil, "int64", testCount, testSizes...)
+	//sort.TestQuickSort[float32](nil, "float32", testCount, testSizes...)
+	//sort.TestQuickSort[float64](nil, "float64", testCount, testSizes...)
 }

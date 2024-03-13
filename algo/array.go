@@ -11,7 +11,7 @@ import (
 
 // AllowedTypes is an interface that allows to use only int64, int32, float32, float64 types
 type AllowedTypes interface {
-	int64 | int32 | float64 | float32
+	int64 | int32 | float64 | float32 | int
 }
 
 // Array is a generic type that allows to create an array of AllowedTypes
@@ -38,6 +38,11 @@ func (arr Array[T]) PopulateWithRandomValues() Array[T] {
 	case reflect.Int32:
 		for i := 0; i < len(arr); i++ {
 			arr[i] = T(rand.Int32())
+		}
+		break
+	case reflect.Int:
+		for i := 0; i < len(arr); i++ {
+			arr[i] = T(rand.Int())
 		}
 		break
 	case reflect.Float64:
@@ -104,12 +109,8 @@ func (arr Array[T]) scramble() Array[T] {
 
 // Swap is a method that swaps two elements in the array
 // p1 and p2 are the positions of the elements to be swapped
-func (arr Array[T]) Swap(p1, p2 int) Array[T] {
+func (arr Array[T]) Swap(p1, p2 int) {
 	if p1 != p2 {
-		tmp := arr[p1]
-		arr[p1] = arr[p2]
-		arr[p2] = tmp
+		arr[p1], arr[p2] = arr[p2], arr[p1]
 	}
-
-	return arr
 }

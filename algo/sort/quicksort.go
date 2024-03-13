@@ -38,10 +38,40 @@ func (q QuickSort[T]) Sort() algo.Array[T] {
 // qs Description: This function is a helper function for the Sort function.
 // It sorts the array using the quicksort recursive algorithm.
 func (q QuickSort[T]) qs(lo, hi int) {
-	if lo < hi {
-		index := q.partition(lo, hi)
-		q.qs(lo, index-1)
-		q.qs(index+1, hi)
+	stack := algo.NewArray[int](hi - lo + 1)
+
+	top := -1
+
+	top++
+	stack[top] = lo
+	top++
+	stack[top] = hi
+
+	// Keep popping from stack while is not empty
+	for top >= 0 {
+		hi = stack[top]
+		top--
+		lo = stack[top]
+		top--
+		p := q.partition(lo, hi)
+
+		// If there are elements on left side of pivot,
+		// then push left side to stack
+		if p-1 > lo {
+			top++
+			stack[top] = lo
+			top++
+			stack[top] = p - 1
+		}
+
+		// If there are elements on right side of pivot,
+		// then push right side to stack
+		if p+1 < hi {
+			top++
+			stack[top] = p + 1
+			top++
+			stack[top] = hi
+		}
 	}
 }
 

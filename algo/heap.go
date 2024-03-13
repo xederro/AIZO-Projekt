@@ -4,7 +4,7 @@ package algo
 // Heap is a generic type that allows to create an array of AllowedTypes
 type Heap[T AllowedTypes] Array[T]
 
-// NewHeap is a constructor for the Array type
+// NewHeap is a constructor for the Heap type
 func NewHeap[T AllowedTypes](array Array[T]) Heap[T] {
 	return Heap[T](array)
 }
