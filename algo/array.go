@@ -19,6 +19,9 @@ type Array[T AllowedTypes] []T
 
 // NewArray is a constructor for the Array type
 func NewArray[T AllowedTypes](n int) Array[T] {
+	if n <= 0 {
+		log.Fatalln("Provided invalid size")
+	}
 	return make([]T, n)
 }
 

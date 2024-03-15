@@ -1,6 +1,7 @@
 /.idea/
 /plots/
 **/*.exe
+**/*.txt
 **/*.png
 **/*.csv
 /main

@@ -2,8 +2,11 @@ package main
 
 import (
 	"AIZO-Projekt/algo/sort"
+	"AIZO-Projekt/algo/sort/insertionsort"
+	"AIZO-Projekt/utils"
 	"flag"
 	"fmt"
+	"log"
 	"strconv"
 )
 
@@ -14,20 +17,28 @@ func main() {
 
 	if *tc != 0 {
 		if *tc < 0 {
-			panic("Count of tests must be greater than 0")
+			log.Fatalln("Count of tests must be greater than 0")
 		}
 		if ts == nil || len(ts) <= 0 {
-			panic("No test values")
+			log.Fatalln("No test values")
 		}
 
 		args, err := parseArgs(&ts)
 		if err != nil {
-			panic("Invalid test values")
+			log.Fatalln("Invalid test values")
 		}
 
 		sort.Test(*tc, args)
 	} else {
-		fmt.Println("No tests to run")
+		arr, err := utils.ReadFile[int](ts[0])
+		if err != nil {
+			log.Fatalln("Invalid file or path")
+		}
+
+		a := insertionsort.NewInsertionSort[int](arr).Sort()
+
+		fmt.Println(arr)
+		fmt.Println(a)
 	}
 }
 

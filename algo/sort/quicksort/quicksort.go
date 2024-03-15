@@ -30,14 +30,13 @@ func (q QuickSort[T]) SetPivotCalcFunc(pcf func(lo int, hi int) int) QuickSort[T
 // Sort Description: This function sorts the array using the quicksort algorithm.
 func (q QuickSort[T]) Sort() algo.Array[T] {
 	q.qs(0, len(q.Arr)-1)
-
 	return q.Arr
 }
 
 // qs Description: This function is a helper function for the Sort function.
 // It sorts the array using the quicksort recursive algorithm.
 func (q QuickSort[T]) qs(lo, hi int) {
-	stack := algo.NewArray[int](hi - lo + 1)
+	stack := algo.NewArray[int](hi - lo + 2)
 
 	top := -1
 
