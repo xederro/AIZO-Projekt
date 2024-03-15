@@ -1,6 +1,8 @@
 SHELL=cmd.exe
 .PHONY: build run plot
 
+all: build run plot
+
 build:
 	go build .\cmd\main.go
 
@@ -9,5 +11,3 @@ run:
 
 plot:
 	python .\scripts\plottime.py .\data.csv plots
-
-all: build run plot
