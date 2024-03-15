@@ -521,12 +521,12 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Hibbard"+typeName, true).
+			framework.NewTTO("ShellSort Lazarus"+typeName, true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
 							PopulateWithRandomValues(),
-					).SetGapCalcFunc(shellsort.Hibbard)
+					).SetGapCalcFunc(shellsort.Lazarus)
 				}).
 				SetMeasure(func(data any) any {
 					return data.(shellsort.ShellSort[T]).Sort()
@@ -534,12 +534,12 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Hibbard"+typeName+" Sorted Ascending", true).
+			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted Ascending", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
 							PopulateWithAscendingValues(),
-					).SetGapCalcFunc(shellsort.Hibbard)
+					).SetGapCalcFunc(shellsort.Lazarus)
 				}).
 				SetMeasure(func(data any) any {
 					return data.(shellsort.ShellSort[T]).Sort()
@@ -547,12 +547,12 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Hibbard"+typeName+" Sorted Descending", true).
+			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted Descending", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
 							PopulateWithDescendingValues(),
-					).SetGapCalcFunc(shellsort.Hibbard)
+					).SetGapCalcFunc(shellsort.Lazarus)
 				}).
 				SetMeasure(func(data any) any {
 					return data.(shellsort.ShellSort[T]).Sort()
@@ -560,12 +560,12 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Hibbard"+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted 1 over 3", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
 							PopulateAndSortOneThirds(),
-					).SetGapCalcFunc(shellsort.Hibbard)
+					).SetGapCalcFunc(shellsort.Lazarus)
 				}).
 				SetMeasure(func(data any) any {
 					return data.(shellsort.ShellSort[T]).Sort()
@@ -573,12 +573,12 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Hibbard"+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted 2 over 3", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
 							PopulateAndSortTwoThirds(),
-					).SetGapCalcFunc(shellsort.Hibbard)
+					).SetGapCalcFunc(shellsort.Lazarus)
 				}).
 				SetMeasure(func(data any) any {
 					return data.(shellsort.ShellSort[T]).Sort()

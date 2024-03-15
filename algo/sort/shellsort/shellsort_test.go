@@ -150,146 +150,146 @@ func TestShellSort_Shell_SortTwoThirds_Float64(t *testing.T) {
 	shellsortShellSortTwoThirdsTest[float64](t)
 }
 
-func shellsortHibbardRandomTest[T algo.AllowedTypes](t *testing.T) {
+func shellsortLazarusRandomTest[T algo.AllowedTypes](t *testing.T) {
 	for range 100 {
-		h := NewShellSort(algo.NewArray[T](1000).PopulateWithRandomValues()).SetGapCalcFunc(Hibbard)
+		h := NewShellSort(algo.NewArray[T](1000).PopulateWithRandomValues()).SetGapCalcFunc(Lazarus)
 		if !slices.IsSorted(h.Sort()) {
 			t.Error("The array is not sorted")
 		}
 	}
 }
 
-func TestShellSort_Hibbard_Random_Int(t *testing.T) {
-	shellsortHibbardRandomTest[int](t)
+func TestShellSort_Lazarus_Random_Int(t *testing.T) {
+	shellsortLazarusRandomTest[int](t)
 }
 
-func TestShellSort_Hibbard_Random_Int32(t *testing.T) {
-	shellsortHibbardRandomTest[int32](t)
+func TestShellSort_Lazarus_Random_Int32(t *testing.T) {
+	shellsortLazarusRandomTest[int32](t)
 }
 
-func TestShellSort_Hibbard_Random_Int64(t *testing.T) {
-	shellsortHibbardRandomTest[int64](t)
+func TestShellSort_Lazarus_Random_Int64(t *testing.T) {
+	shellsortLazarusRandomTest[int64](t)
 }
 
-func TestShellSort_Hibbard_Random_Float32(t *testing.T) {
-	shellsortHibbardRandomTest[float32](t)
+func TestShellSort_Lazarus_Random_Float32(t *testing.T) {
+	shellsortLazarusRandomTest[float32](t)
 }
 
-func TestShellSort_Hibbard_Random_Float64(t *testing.T) {
-	shellsortHibbardRandomTest[float64](t)
+func TestShellSort_Lazarus_Random_Float64(t *testing.T) {
+	shellsortLazarusRandomTest[float64](t)
 }
 
-func shellsortHibbardAscendingTest[T algo.AllowedTypes](t *testing.T) {
+func shellsortLazarusAscendingTest[T algo.AllowedTypes](t *testing.T) {
 	for range 100 {
-		h := NewShellSort(algo.NewArray[T](1000).PopulateWithAscendingValues()).SetGapCalcFunc(Hibbard)
+		h := NewShellSort(algo.NewArray[T](1000).PopulateWithAscendingValues()).SetGapCalcFunc(Lazarus)
 		if !slices.IsSorted(h.Sort()) {
 			t.Error("The array is not sorted")
 		}
 	}
 }
 
-func TestShellSort_Hibbard_Ascending_Int(t *testing.T) {
-	shellsortHibbardAscendingTest[int](t)
+func TestShellSort_Lazarus_Ascending_Int(t *testing.T) {
+	shellsortLazarusAscendingTest[int](t)
 }
 
-func TestShellSort_Hibbard_Ascending_Int32(t *testing.T) {
-	shellsortHibbardAscendingTest[int32](t)
+func TestShellSort_Lazarus_Ascending_Int32(t *testing.T) {
+	shellsortLazarusAscendingTest[int32](t)
 }
 
-func TestShellSort_Hibbard_Ascending_Int64(t *testing.T) {
-	shellsortHibbardAscendingTest[int64](t)
+func TestShellSort_Lazarus_Ascending_Int64(t *testing.T) {
+	shellsortLazarusAscendingTest[int64](t)
 }
 
-func TestShellSort_Hibbard_Ascending_Float32(t *testing.T) {
-	shellsortHibbardAscendingTest[float32](t)
+func TestShellSort_Lazarus_Ascending_Float32(t *testing.T) {
+	shellsortLazarusAscendingTest[float32](t)
 }
 
-func TestShellSort_Hibbard_Ascending_Float64(t *testing.T) {
-	shellsortHibbardAscendingTest[float64](t)
+func TestShellSort_Lazarus_Ascending_Float64(t *testing.T) {
+	shellsortLazarusAscendingTest[float64](t)
 }
 
-func shellsortHibbardDescendingTest[T algo.AllowedTypes](t *testing.T) {
+func shellsortLazarusDescendingTest[T algo.AllowedTypes](t *testing.T) {
 	for range 100 {
-		h := NewShellSort(algo.NewArray[T](1000).PopulateWithDescendingValues()).SetGapCalcFunc(Hibbard)
+		h := NewShellSort(algo.NewArray[T](1000).PopulateWithDescendingValues()).SetGapCalcFunc(Lazarus)
 		if !slices.IsSorted(h.Sort()) {
 			t.Error("The array is not sorted")
 		}
 	}
 }
 
-func TestShellSort_Hibbard_Descending_Int(t *testing.T) {
-	shellsortHibbardDescendingTest[int](t)
+func TestShellSort_Lazarus_Descending_Int(t *testing.T) {
+	shellsortLazarusDescendingTest[int](t)
 }
 
-func TestShellSort_Hibbard_Descending_Int32(t *testing.T) {
-	shellsortHibbardDescendingTest[int32](t)
+func TestShellSort_Lazarus_Descending_Int32(t *testing.T) {
+	shellsortLazarusDescendingTest[int32](t)
 }
 
-func TestShellSort_Hibbard_Descending_Int64(t *testing.T) {
-	shellsortHibbardDescendingTest[int64](t)
+func TestShellSort_Lazarus_Descending_Int64(t *testing.T) {
+	shellsortLazarusDescendingTest[int64](t)
 }
 
-func TestShellSort_Hibbard_Descending_Float32(t *testing.T) {
-	shellsortHibbardDescendingTest[float32](t)
+func TestShellSort_Lazarus_Descending_Float32(t *testing.T) {
+	shellsortLazarusDescendingTest[float32](t)
 }
 
-func TestShellSort_Hibbard_Descending_Float64(t *testing.T) {
-	shellsortHibbardDescendingTest[float64](t)
+func TestShellSort_Lazarus_Descending_Float64(t *testing.T) {
+	shellsortLazarusDescendingTest[float64](t)
 }
 
-func shellsortHibbardSortOneThirdsTest[T algo.AllowedTypes](t *testing.T) {
+func shellsortLazarusSortOneThirdsTest[T algo.AllowedTypes](t *testing.T) {
 	for range 100 {
-		h := NewShellSort(algo.NewArray[T](1000).PopulateAndSortOneThirds()).SetGapCalcFunc(Hibbard)
+		h := NewShellSort(algo.NewArray[T](1000).PopulateAndSortOneThirds()).SetGapCalcFunc(Lazarus)
 		if !slices.IsSorted(h.Sort()) {
 			t.Error("The array is not sorted")
 		}
 	}
 }
 
-func TestShellSort_Hibbard_SortOneThirds_Int(t *testing.T) {
-	shellsortHibbardSortOneThirdsTest[int](t)
+func TestShellSort_Lazarus_SortOneThirds_Int(t *testing.T) {
+	shellsortLazarusSortOneThirdsTest[int](t)
 }
 
-func TestShellSort_Hibbard_SortOneThirds_Int32(t *testing.T) {
-	shellsortHibbardSortOneThirdsTest[int32](t)
+func TestShellSort_Lazarus_SortOneThirds_Int32(t *testing.T) {
+	shellsortLazarusSortOneThirdsTest[int32](t)
 }
 
-func TestShellSort_Hibbard_SortOneThirds_Int64(t *testing.T) {
-	shellsortHibbardSortOneThirdsTest[int64](t)
+func TestShellSort_Lazarus_SortOneThirds_Int64(t *testing.T) {
+	shellsortLazarusSortOneThirdsTest[int64](t)
 }
 
-func TestShellSort_Hibbard_SortOneThirds_Float32(t *testing.T) {
-	shellsortHibbardSortOneThirdsTest[float32](t)
+func TestShellSort_Lazarus_SortOneThirds_Float32(t *testing.T) {
+	shellsortLazarusSortOneThirdsTest[float32](t)
 }
 
-func TestShellSort_Hibbard_SortOneThirds_Float64(t *testing.T) {
-	shellsortHibbardSortOneThirdsTest[float64](t)
+func TestShellSort_Lazarus_SortOneThirds_Float64(t *testing.T) {
+	shellsortLazarusSortOneThirdsTest[float64](t)
 }
-func shellsortHibbardSortTwoThirdsTest[T algo.AllowedTypes](t *testing.T) {
+func shellsortLazarusSortTwoThirdsTest[T algo.AllowedTypes](t *testing.T) {
 	for range 100 {
-		h := NewShellSort(algo.NewArray[T](1000).PopulateAndSortTwoThirds()).SetGapCalcFunc(Hibbard)
+		h := NewShellSort(algo.NewArray[T](1000).PopulateAndSortTwoThirds()).SetGapCalcFunc(Lazarus)
 		if !slices.IsSorted(h.Sort()) {
 			t.Error("The array is not sorted")
 		}
 	}
 }
 
-func TestShellSort_Hibbard_SortTwoThirds_Int(t *testing.T) {
-	shellsortHibbardSortTwoThirdsTest[int](t)
+func TestShellSort_Lazarus_SortTwoThirds_Int(t *testing.T) {
+	shellsortLazarusSortTwoThirdsTest[int](t)
 }
 
-func TestShellSort_Hibbard_SortTwoThirds_Int32(t *testing.T) {
-	shellsortHibbardSortTwoThirdsTest[int32](t)
+func TestShellSort_Lazarus_SortTwoThirds_Int32(t *testing.T) {
+	shellsortLazarusSortTwoThirdsTest[int32](t)
 }
 
-func TestShellSort_Hibbard_SortTwoThirds_Int64(t *testing.T) {
-	shellsortHibbardSortTwoThirdsTest[int64](t)
+func TestShellSort_Lazarus_SortTwoThirds_Int64(t *testing.T) {
+	shellsortLazarusSortTwoThirdsTest[int64](t)
 }
 
-func TestShellSort_Hibbard_SortTwoThirds_Float32(t *testing.T) {
-	shellsortHibbardSortTwoThirdsTest[float32](t)
+func TestShellSort_Lazarus_SortTwoThirds_Float32(t *testing.T) {
+	shellsortLazarusSortTwoThirdsTest[float32](t)
 }
 
-func TestShellSort_Hibbard_SortTwoThirds_Float64(t *testing.T) {
-	shellsortHibbardSortTwoThirdsTest[float64](t)
+func TestShellSort_Lazarus_SortTwoThirds_Float64(t *testing.T) {
+	shellsortLazarusSortTwoThirdsTest[float64](t)
 }

@@ -56,7 +56,7 @@ func Shell(N, k int) int {
 	return int(g)
 }
 
-func Hibbard(N, k int) int {
-	g := math.Pow(2, float64(k)) - 1
+func Lazarus(N, k int) int {
+	g := 2*math.Floor(float64(N)/math.Pow(2, float64(k+1))) + 1
 	return int(g)
 }
