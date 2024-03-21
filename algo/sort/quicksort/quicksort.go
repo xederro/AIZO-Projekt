@@ -51,15 +51,18 @@ func (q QuickSort[T]) qs(lo, hi int) {
 		top--
 		lo = stack[top]
 		top--
+		if lo >= hi {
+			return
+		}
 		p := q.partition(lo, hi)
 
 		// If there are elements on left side of pivot,
 		// then push left side to stack
-		if p-1 > lo {
+		if p > lo {
 			top++
 			stack[top] = lo
 			top++
-			stack[top] = p - 1
+			stack[top] = p
 		}
 
 		// If there are elements on right side of pivot,
@@ -71,26 +74,62 @@ func (q QuickSort[T]) qs(lo, hi int) {
 			stack[top] = hi
 		}
 	}
+
+	//if lo >= hi {
+	//	return
+	//}
+	//m := q.partition(lo, hi)
+	//q.qs(lo, m)
+	//q.qs(m+1, hi)
 }
 
+// // partition Description: This function is a helper function for the qs function.
+// // It returns the index of the pivot element after dividing the array into two parts.
+//
+//	func (q QuickSort[T]) partition(lo, hi int) int {
+//		//find the index of the pivot element, pivot and swap it with the last element to avoid checking it
+//		p := q.pivotCalc(lo, hi)
+//		pivot := q.Arr[p]
+//		index := lo
+//		q.Arr.Swap(p, hi)
+//
+//		for i := lo; i < hi; i++ {
+//			if q.Arr[i] < pivot {
+//				q.Arr.Swap(i, index)
+//				index++
+//			}
+//		}
+//		q.Arr.Swap(hi, index)
+//
+//		return index
+//	}
+//
 // partition Description: This function is a helper function for the qs function.
 // It returns the index of the pivot element after dividing the array into two parts.
 func (q QuickSort[T]) partition(lo, hi int) int {
-	//find the index of the pivot element, pivot and swap it with the last element to avoid checking it
 	p := q.pivotCalc(lo, hi)
 	pivot := q.Arr[p]
-	index := lo
-	q.Arr.Swap(p, hi)
+	l := lo
+	r := hi
+	for {
+		for q.Arr[l] < pivot {
+			l++
+		}
+		for q.Arr[r] > pivot {
+			r--
+		}
 
-	for i := lo; i < hi; i++ {
-		if q.Arr[i] < pivot {
-			q.Arr.Swap(i, index)
-			index++
+		if l < r {
+			q.Arr.Swap(l, r)
+			l++
+			r--
+		} else {
+			if r == hi {
+				r--
+			}
+			return r
 		}
 	}
-	q.Arr.Swap(hi, index)
-
-	return index
 }
 
 // Last Description: This function returns the index of the last element.

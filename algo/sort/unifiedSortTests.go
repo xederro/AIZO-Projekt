@@ -12,40 +12,91 @@ import (
 	"time"
 )
 
-func Test(testCount int, testSizes []int) {
-	wg := &sync.WaitGroup{}
+type TestConfig struct {
+	TestCount         *int
+	TestSizes         *[]int
+	TestHeapSort      *bool
+	TestInsertionSort *bool
+	TestQuickSort     *bool
+	TestShellSort     *bool
+	TestAsync         *bool
+}
 
-	wg.Add(5)
-	go TestHeapSort[int](wg, "int", testCount, testSizes...)
-	go TestHeapSort[int32](wg, "int32", testCount, testSizes...)
-	go TestHeapSort[int64](wg, "int64", testCount, testSizes...)
-	go TestHeapSort[float32](wg, "float32", testCount, testSizes...)
-	go TestHeapSort[float64](wg, "float64", testCount, testSizes...)
-	wg.Wait()
+func Test(test *TestConfig) {
+	if *test.TestAsync {
+		wg := &sync.WaitGroup{}
+		if *test.TestHeapSort {
+			wg.Add(5)
+			go TestHeapSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestHeapSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
+			go TestHeapSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
+			go TestHeapSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
+			go TestHeapSort[float64](wg, "float64", *test.TestCount, *test.TestSizes...)
+			wg.Wait()
+		}
 
-	wg.Add(5)
-	go TestInsertionSort[int](wg, "int", testCount, testSizes...)
-	go TestInsertionSort[int32](wg, "int32", testCount, testSizes...)
-	go TestInsertionSort[int64](wg, "int64", testCount, testSizes...)
-	go TestInsertionSort[float32](wg, "float32", testCount, testSizes...)
-	go TestInsertionSort[float64](wg, "float64", testCount, testSizes...)
-	wg.Wait()
+		if *test.TestInsertionSort {
+			wg.Add(5)
+			go TestInsertionSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestInsertionSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
+			go TestInsertionSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
+			go TestInsertionSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
+			go TestInsertionSort[float64](wg, "float64", *test.TestCount, *test.TestSizes...)
+			wg.Wait()
+		}
 
-	wg.Add(5)
-	go TestQuickSort[int](wg, "int", testCount, testSizes...)
-	go TestQuickSort[int32](wg, "int32", testCount, testSizes...)
-	go TestQuickSort[int64](wg, "int64", testCount, testSizes...)
-	go TestQuickSort[float32](wg, "float32", testCount, testSizes...)
-	go TestQuickSort[float64](wg, "float64", testCount, testSizes...)
-	wg.Wait()
+		if *test.TestQuickSort {
+			wg.Add(5)
+			go TestQuickSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestQuickSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
+			go TestQuickSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
+			go TestQuickSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
+			go TestQuickSort[float64](wg, "float64", *test.TestCount, *test.TestSizes...)
+			wg.Wait()
+		}
 
-	wg.Add(5)
-	go TestShellSort[int](wg, "int", testCount, testSizes...)
-	go TestShellSort[int32](wg, "int32", testCount, testSizes...)
-	go TestShellSort[int64](wg, "int64", testCount, testSizes...)
-	go TestShellSort[float32](wg, "float32", testCount, testSizes...)
-	go TestShellSort[float64](wg, "float64", testCount, testSizes...)
-	wg.Wait()
+		if *test.TestShellSort {
+			wg.Add(5)
+			go TestShellSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestShellSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
+			go TestShellSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
+			go TestShellSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
+			go TestShellSort[float64](wg, "float64", *test.TestCount, *test.TestSizes...)
+			wg.Wait()
+		}
+	} else {
+		if *test.TestHeapSort {
+			TestHeapSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestHeapSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
+			TestHeapSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
+			TestHeapSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
+			TestHeapSort[float64](nil, "float64", *test.TestCount, *test.TestSizes...)
+		}
+
+		if *test.TestInsertionSort {
+			TestInsertionSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestInsertionSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
+			TestInsertionSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
+			TestInsertionSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
+			TestInsertionSort[float64](nil, "float64", *test.TestCount, *test.TestSizes...)
+		}
+
+		if *test.TestQuickSort {
+			TestQuickSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestQuickSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
+			TestQuickSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
+			TestQuickSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
+			TestQuickSort[float64](nil, "float64", *test.TestCount, *test.TestSizes...)
+		}
+
+		if *test.TestShellSort {
+			TestShellSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestShellSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
+			TestShellSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
+			TestShellSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
+			TestShellSort[float64](nil, "float64", *test.TestCount, *test.TestSizes...)
+		}
+	}
 }
 
 func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {

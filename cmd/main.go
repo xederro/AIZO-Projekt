@@ -38,20 +38,36 @@ const (
 )
 
 func main() {
-	tc := flag.Int("c", 0, "Count of tests")
+	//fmt.Println(
+	//	quicksort.NewQuickSort(
+	//		[]int{34, 634, 134, 346},
+	//	).
+	//		SetPivotCalcFunc(quicksort.First).
+	//		Sort(),
+	//)
+
+	testConf := sort.TestConfig{
+		TestCount:         flag.Int("c", 0, "Count of tests"),
+		TestHeapSort:      flag.Bool("h", false, "Test heap sort"),
+		TestInsertionSort: flag.Bool("i", false, "Test heap sort"),
+		TestQuickSort:     flag.Bool("q", false, "Test heap sort"),
+		TestShellSort:     flag.Bool("s", false, "Test heap sort"),
+		TestAsync:         flag.Bool("a", false, "Test heap sort"),
+	}
+
 	flag.Parse()
 	ts := flag.Args()
 
-	if *tc != 0 {
-		auto(tc, ts)
+	if *testConf.TestCount != 0 {
+		auto(&testConf, ts)
 	} else {
 		manual()
 	}
 }
 
 // auto is a function that allows user to choose type of values and file with values
-func auto(tc *int, ts []string) {
-	if *tc < 0 {
+func auto(tc *sort.TestConfig, ts []string) {
+	if *tc.TestCount < 0 {
 		log.Fatalln("Count of tests must be greater than 0")
 	}
 	if ts == nil || len(ts) <= 0 {
@@ -63,7 +79,8 @@ func auto(tc *int, ts []string) {
 		log.Fatalln("Invalid test values")
 	}
 
-	sort.Test(*tc, args)
+	tc.TestSizes = &args
+	sort.Test(tc)
 }
 
 // parseArgs is a function that parses string arguments to int
