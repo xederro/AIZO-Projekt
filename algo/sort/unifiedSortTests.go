@@ -1,12 +1,12 @@
 package sort
 
 import (
-	"AIZO-Projekt/algo"
-	"AIZO-Projekt/algo/sort/heapsort"
-	"AIZO-Projekt/algo/sort/insertionsort"
-	"AIZO-Projekt/algo/sort/quicksort"
-	"AIZO-Projekt/algo/sort/shellsort"
-	"AIZO-Projekt/framework"
+	"github.com/xederro/AIZO-Projekt/algo"
+	"github.com/xederro/AIZO-Projekt/algo/sort/heapsort"
+	"github.com/xederro/AIZO-Projekt/algo/sort/insertionsort"
+	"github.com/xederro/AIZO-Projekt/algo/sort/quicksort"
+	"github.com/xederro/AIZO-Projekt/algo/sort/shellsort"
+	"github.com/xederro/AIZO-Projekt/framework"
 	"slices"
 	"sync"
 	"time"
@@ -507,7 +507,7 @@ func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, test
 func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
 	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
-			framework.NewTTO("ShellSort Shell"+typeName, true).
+			framework.NewTTO("ShellSort Shell "+typeName, true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -520,7 +520,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell"+typeName+" Sorted Ascending", true).
+			framework.NewTTO("ShellSort Shell "+typeName+" Sorted Ascending", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -533,7 +533,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell"+typeName+" Sorted Descending", true).
+			framework.NewTTO("ShellSort Shell "+typeName+" Sorted Descending", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -546,7 +546,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell"+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("ShellSort Shell "+typeName+" Sorted 1 over 3", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -559,7 +559,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell"+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("ShellSort Shell "+typeName+" Sorted 2 over 3", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -572,7 +572,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus"+typeName, true).
+			framework.NewTTO("ShellSort Lazarus "+typeName, true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -585,7 +585,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted Ascending", true).
+			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted Ascending", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -598,7 +598,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted Descending", true).
+			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted Descending", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -611,7 +611,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted 1 over 3", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -624,7 +624,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus"+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted 2 over 3", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).

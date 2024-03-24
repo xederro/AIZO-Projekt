@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"AIZO-Projekt/algo"
 	"bufio"
+	"github.com/xederro/AIZO-Projekt/algo"
 	"io"
 	"log"
 	"os"
@@ -20,7 +20,6 @@ func ReadFile[T algo.AllowedTypes](path string) (algo.Array[T], error) {
 	r := bufio.NewReader(f)
 
 	var arr *algo.Array[T]
-
 	read, err := r.ReadString('\n')
 	if err != nil && err != io.EOF {
 		log.Fatalln("Error reading file")
@@ -35,6 +34,7 @@ func ReadFile[T algo.AllowedTypes](path string) (algo.Array[T], error) {
 
 	read, err = r.ReadString('\n')
 	read = strings.Trim(read, "\r\n")
+
 	for p := 0; p < atoi; p++ {
 		if err != nil && err != io.EOF {
 			log.Fatalln("Error reading file")
@@ -81,8 +81,12 @@ func ReadFile[T algo.AllowedTypes](path string) (algo.Array[T], error) {
 			log.Fatalln("Provided array of wrong type")
 		}
 
-		read, err = r.ReadString('\n')
-		read = strings.Trim(read, "\r\n")
+		if err == io.EOF && p < atoi-1 {
+			log.Fatalln("Promised number of elements not found in file")
+		} else {
+			read, err = r.ReadString('\n')
+			read = strings.Trim(read, "\r\n")
+		}
 	}
 
 	return *arr, nil

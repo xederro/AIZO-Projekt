@@ -1,7 +1,7 @@
 SHELL=cmd.exe
-.PHONY: build run plot
+.PHONY: build run plot prof prod test bench
 
-all: build run plot
+all: prod run plot
 
 build:
 	go build .\cmd\main.go
@@ -11,3 +11,15 @@ run:
 
 plot:
 	python .\scripts\plottime.py .\data.csv plots
+
+prof:
+	go tool pprof -http 127.0.0.1:8080 cpu_profile.prof
+
+prod:
+	go build -ldflags "-s -w" .\cmd\main.go
+
+test:
+	go test .\algo\sort\...
+
+bench:
+	go test -bench=. .\algo\sort\...

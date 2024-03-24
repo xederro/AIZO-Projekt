@@ -1,4 +1,4 @@
-module AIZO-Projekt
+module github.com/xederro/AIZO-Projekt
 
 go 1.22
 

@@ -1,6 +1,6 @@
 package heapsort
 
-import "AIZO-Projekt/algo"
+import "github.com/xederro/AIZO-Projekt/algo"
 
 // HeapSort Description: This struct contains the copy of array.
 type HeapSort[T algo.AllowedTypes] struct {

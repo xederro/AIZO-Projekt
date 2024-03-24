@@ -1,7 +1,7 @@
 package insertionsort
 
 import (
-	"AIZO-Projekt/algo"
+	"github.com/xederro/AIZO-Projekt/algo"
 	"slices"
 	"testing"
 )

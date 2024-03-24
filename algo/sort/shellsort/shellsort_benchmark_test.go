@@ -1,7 +1,7 @@
 package shellsort
 
 import (
-	"AIZO-Projekt/algo"
+	"github.com/xederro/AIZO-Projekt/algo"
 	"testing"
 )
 

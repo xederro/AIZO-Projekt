@@ -1,7 +1,7 @@
 package quicksort
 
 import (
-	"AIZO-Projekt/algo"
+	"github.com/xederro/AIZO-Projekt/algo"
 	"math/rand"
 )
 
@@ -75,35 +75,8 @@ func (q QuickSort[T]) qs(lo, hi int) {
 		}
 	}
 
-	//if lo >= hi {
-	//	return
-	//}
-	//m := q.partition(lo, hi)
-	//q.qs(lo, m)
-	//q.qs(m+1, hi)
 }
 
-// // partition Description: This function is a helper function for the qs function.
-// // It returns the index of the pivot element after dividing the array into two parts.
-//
-//	func (q QuickSort[T]) partition(lo, hi int) int {
-//		//find the index of the pivot element, pivot and swap it with the last element to avoid checking it
-//		p := q.pivotCalc(lo, hi)
-//		pivot := q.Arr[p]
-//		index := lo
-//		q.Arr.Swap(p, hi)
-//
-//		for i := lo; i < hi; i++ {
-//			if q.Arr[i] < pivot {
-//				q.Arr.Swap(i, index)
-//				index++
-//			}
-//		}
-//		q.Arr.Swap(hi, index)
-//
-//		return index
-//	}
-//
 // partition Description: This function is a helper function for the qs function.
 // It returns the index of the pivot element after dividing the array into two parts.
 func (q QuickSort[T]) partition(lo, hi int) int {

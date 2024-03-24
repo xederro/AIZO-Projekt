@@ -20,6 +20,12 @@ make build
 or
 
 ```bash
+make prod
+```
+
+or
+
+```bash
 go build .\cmd\main.go
 ```
 ### Run
@@ -30,9 +36,25 @@ make run
 or
 
 ```bash
-chcp 65001 & .\main.exe -c 100 1000 2000 4000 8000 16000 32000 64000 > data.csv
+.\main.exe -p -a -h -i -q -s -c 100 1000 2000 4000 8000 16000 32000 64000
 ```
-main.exe -c [count of tests] [sizes of test arrays] > data.csv
+main.exe [params] -c [count of tests] [sizes of test arrays]
+
+-p - profile mode
+
+-a - asynchronous mode
+
+-h - test heap sort
+
+-i - test insertion sort
+
+-q - test quick sort
+
+-s - test selection sort
+
+> If you want to plot the data on windows, 
+> you need to run the program with `chcp 65001 & <run command>`
+> or manually convert csv to utf8
 
 ### Plot
 ```bash
@@ -45,3 +67,24 @@ or
 python .\scripts\plottime.py .\data.csv plots
 ```
 
+### Tests
+```bash
+make test
+```
+
+or
+
+```bash
+go test .\algo\sort\...
+```
+
+### Benchmarks
+```bash
+make bench
+```
+
+or
+
+```bash
+go test -bench=. .\algo\sort\...
+```

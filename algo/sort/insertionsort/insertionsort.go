@@ -1,6 +1,6 @@
 package insertionsort
 
-import "AIZO-Projekt/algo"
+import "github.com/xederro/AIZO-Projekt/algo"
 
 // InsertionSort Description: This struct contains the copy of array.
 type InsertionSort[T algo.AllowedTypes] struct {
