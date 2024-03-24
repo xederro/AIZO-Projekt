@@ -11,17 +11,67 @@ import (
 	"github.com/xederro/AIZO-Projekt/algo/sort/shellsort"
 	"github.com/xederro/AIZO-Projekt/utils"
 	"log"
+	"strconv"
+)
+
+const (
+	// Constants for types of values
+	INT = iota
+	INT32
+	INT64
+	FLOAT32
+	FLOAT64
+	// Constants for types of sorts
+	HEAPSORT
+	INSERTIONSORT
+	QUICKSORT
+	SHELLSORT
+	// Constants for pivot point positions
+	RANDOM
+	MIDDLE
+	FIRST
+	LAST
+	// Constants for series of gaps
+	SHELL
+	LAZARUS
+	// Constants for populating array
+	RANDOM_VALUES
+	ONETHIRD
+	TWOTHIRDS
+	ASCENDING
+	DESCENDING
 )
 
 // manual is a function that allows user to choose type of values and file with values
 func manual() {
-	path, typ := getFileAndType()
+	fromFile := false
+	form := huh.NewForm(
+		huh.NewGroup(
+			huh.NewConfirm().
+				Title("Read array from file or generate?").
+				Negative("Generate").
+				Affirmative("From file").
+				Value(&fromFile),
+		),
+	).WithTheme(huh.ThemeCharm())
 
-	readVal(typ, path)
+	err := form.Run()
+	if err != nil {
+		log.Fatalln("Error with form")
+	}
+
+	typ := getType()
+
+	if fromFile {
+		path := getPath()
+		startWithFile(typ, path)
+	} else {
+		startWithGenerate(typ)
+	}
 }
 
-// readVal is a function that reads values from file
-func readVal(typ int, path string) {
+// startWithFile is a function that reads values from file
+func startWithFile(typ int, path string) {
 	switch typ {
 	case INT:
 		arr, err := utils.ReadFile[int](path)
@@ -63,19 +113,117 @@ func readVal(typ int, path string) {
 	}
 }
 
-// getFileAndType is a function that allows user to choose type of values and file with values
-func getFileAndType() (string, int) {
-	var path string
-	var typ int
+// startWithFile is a function that reads values from file
+func startWithGenerate(typ int) {
+	n := "0"
 
-	// insert path to file with values, and choose type of values
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewInput().
-				Title("Insert path to file with values").
-				Prompt(">").
-				Value(&path),
+				Title("Input number of elements").
+				Prompt("> ").
+				Validate(isNumber).
+				Value(&n),
 		),
+	).WithTheme(huh.ThemeCharm())
+
+	err := form.Run()
+	if err != nil {
+		log.Fatalln("Error with form")
+	}
+
+	leng, err := strconv.Atoi(n)
+	if err != nil {
+		log.Fatalln("Invalid number")
+	}
+
+	switch typ {
+	case INT:
+		arr := populate[int](leng)
+		menu[int](arr)
+		break
+	case INT32:
+		arr := populate[int32](leng)
+		menu[int32](arr)
+		break
+	case INT64:
+		arr := populate[int64](leng)
+		menu[int64](arr)
+		break
+	case FLOAT32:
+		arr := populate[float32](leng)
+		menu[float32](arr)
+		break
+	case FLOAT64:
+		arr := populate[float64](leng)
+		menu[float64](arr)
+		break
+	default:
+		log.Fatalln("Invalid type")
+	}
+}
+
+// isNumber is a function that checks if string is a number
+func isNumber(s string) error {
+	_, err := strconv.Atoi(s)
+	if err != nil {
+		return fmt.Errorf("'%s' is not a number", s)
+	}
+	return nil
+}
+
+// startWithFile is a function that reads values from file
+func populate[T algo.AllowedTypes](n int) algo.Array[T] {
+	arr := algo.NewArray[T](n)
+	populationMethod := 0
+	form := huh.NewForm(
+		huh.NewGroup(
+			huh.NewSelect[int]().
+				Title("How to populate the array?").
+				Options(
+					huh.NewOption("With Random values", RANDOM_VALUES),
+					huh.NewOption("With Ascending values", ASCENDING),
+					huh.NewOption("With Descending values", DESCENDING),
+					huh.NewOption("With 1/3 sorted values", ONETHIRD),
+					huh.NewOption("With 2/3 sorted values", TWOTHIRDS),
+				).
+				Value(&populationMethod),
+		),
+	).WithTheme(huh.ThemeCharm())
+
+	err := form.Run()
+	if err != nil {
+		log.Fatalln("Error with form")
+	}
+
+	switch populationMethod {
+	case RANDOM_VALUES:
+		arr.PopulateWithRandomValues()
+		break
+	case ASCENDING:
+		arr.PopulateWithAscendingValues()
+		break
+	case DESCENDING:
+		arr.PopulateWithDescendingValues()
+		break
+	case ONETHIRD:
+		arr.PopulateAndSortOneThirds()
+		break
+	case TWOTHIRDS:
+		arr.PopulateAndSortTwoThirds()
+		break
+	default:
+		log.Fatalln("Invalid population method")
+	}
+
+	return arr
+}
+
+// getType is a function that allows user to choose type of values
+func getType() int {
+	var typ int
+	// insert path to file with values, and choose type of values
+	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[int]().
 				Title("Choose type").
@@ -94,7 +242,28 @@ func getFileAndType() (string, int) {
 	if err != nil {
 		log.Fatalln("Error with form")
 	}
-	return path, typ
+	return typ
+}
+
+// getPath is a function that allows user to choose file with values
+func getPath() string {
+	var path string
+
+	// insert path to file with values, and choose type of values
+	form := huh.NewForm(
+		huh.NewGroup(
+			huh.NewInput().
+				Title("Insert path to file with values").
+				Prompt("> ").
+				Value(&path),
+		),
+	).WithTheme(huh.ThemeCharm())
+
+	err := form.Run()
+	if err != nil {
+		log.Fatalln("Error with form")
+	}
+	return path
 }
 
 // menu is a function that allows user to choose sorting algorithm
@@ -124,9 +293,6 @@ func menu[T algo.AllowedTypes](arr algo.Array[T]) {
 		s := chooseSortMethod(arr, a)
 
 		fmt.Printf("Unsorted:\n%v\nSorted:\n%v\n", arr, s.Sort())
-		//fmt.Println(arr)
-		//fmt.Println("Sorted: ")
-		//fmt.Println(s.Sort())
 
 		form = huh.NewForm(
 			huh.NewGroup(

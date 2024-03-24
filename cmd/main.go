@@ -8,28 +8,6 @@ import (
 	"strconv"
 )
 
-const (
-	// Constants for types of values
-	INT = iota
-	INT32
-	INT64
-	FLOAT32
-	FLOAT64
-	// Constants for types of sorts
-	HEAPSORT
-	INSERTIONSORT
-	QUICKSORT
-	SHELLSORT
-	// Constants for pivot point positions
-	RANDOM
-	MIDDLE
-	FIRST
-	LAST
-	// Constants for series of gaps
-	SHELL
-	LAZARUS
-)
-
 func main() {
 	perf := flag.Bool("p", false, "Measure performance")
 	testConf := sort.TestConfig{
