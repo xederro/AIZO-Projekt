@@ -26,7 +26,7 @@ make prod
 or
 
 ```bash
-go build .\cmd\main.go
+go build .\cmd
 ```
 ### Run
 ```bash
@@ -36,9 +36,9 @@ make run
 or
 
 ```bash
-.\main.exe -p -a -h -i -q -s -c 100 1000 2000 4000 8000 16000 32000 64000
+.\cmd.exe -p -a -h -i -q -s -c 100 1000 2000 4000 8000 16000 32000 64000
 ```
-main.exe [params] -c [count of tests] [sizes of test arrays]
+cmd.exe [params] -c [count of tests] [sizes of test arrays]
 
 -p - profile mode
 
