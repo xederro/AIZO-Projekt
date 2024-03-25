@@ -27,7 +27,7 @@ func Test(test *TestConfig) {
 		wg := &sync.WaitGroup{}
 		if *test.TestHeapSort {
 			wg.Add(5)
-			go TestHeapSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestHeapSort[int8](wg, "int8", *test.TestCount, *test.TestSizes...)
 			go TestHeapSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
 			go TestHeapSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
 			go TestHeapSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
@@ -37,7 +37,7 @@ func Test(test *TestConfig) {
 
 		if *test.TestInsertionSort {
 			wg.Add(5)
-			go TestInsertionSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestInsertionSort[int8](wg, "int8", *test.TestCount, *test.TestSizes...)
 			go TestInsertionSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
 			go TestInsertionSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
 			go TestInsertionSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
@@ -47,7 +47,7 @@ func Test(test *TestConfig) {
 
 		if *test.TestQuickSort {
 			wg.Add(5)
-			go TestQuickSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestQuickSort[int8](wg, "int8", *test.TestCount, *test.TestSizes...)
 			go TestQuickSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
 			go TestQuickSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
 			go TestQuickSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
@@ -57,7 +57,7 @@ func Test(test *TestConfig) {
 
 		if *test.TestShellSort {
 			wg.Add(5)
-			go TestShellSort[int](wg, "int", *test.TestCount, *test.TestSizes...)
+			go TestShellSort[int8](wg, "int8", *test.TestCount, *test.TestSizes...)
 			go TestShellSort[int32](wg, "int32", *test.TestCount, *test.TestSizes...)
 			go TestShellSort[int64](wg, "int64", *test.TestCount, *test.TestSizes...)
 			go TestShellSort[float32](wg, "float32", *test.TestCount, *test.TestSizes...)
@@ -66,7 +66,7 @@ func Test(test *TestConfig) {
 		}
 	} else {
 		if *test.TestHeapSort {
-			TestHeapSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestHeapSort[int8](nil, "int8", *test.TestCount, *test.TestSizes...)
 			TestHeapSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
 			TestHeapSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
 			TestHeapSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
@@ -74,7 +74,7 @@ func Test(test *TestConfig) {
 		}
 
 		if *test.TestInsertionSort {
-			TestInsertionSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestInsertionSort[int8](nil, "int8", *test.TestCount, *test.TestSizes...)
 			TestInsertionSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
 			TestInsertionSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
 			TestInsertionSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
@@ -82,7 +82,7 @@ func Test(test *TestConfig) {
 		}
 
 		if *test.TestQuickSort {
-			TestQuickSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestQuickSort[int8](nil, "int8", *test.TestCount, *test.TestSizes...)
 			TestQuickSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
 			TestQuickSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
 			TestQuickSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)
@@ -90,7 +90,7 @@ func Test(test *TestConfig) {
 		}
 
 		if *test.TestShellSort {
-			TestShellSort[int](nil, "int", *test.TestCount, *test.TestSizes...)
+			TestShellSort[int8](nil, "int8", *test.TestCount, *test.TestSizes...)
 			TestShellSort[int32](nil, "int32", *test.TestCount, *test.TestSizes...)
 			TestShellSort[int64](nil, "int64", *test.TestCount, *test.TestSizes...)
 			TestShellSort[float32](nil, "float32", *test.TestCount, *test.TestSizes...)

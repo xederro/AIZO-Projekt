@@ -17,7 +17,7 @@ func quicksortMiddleRandomTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Middle_Random_Int(t *testing.T) {
-	quicksortMiddleRandomTest[int](t)
+	quicksortMiddleRandomTest[int8](t)
 }
 
 func TestQuickSort_Middle_Random_Int32(t *testing.T) {
@@ -47,7 +47,7 @@ func quicksortMiddleAscendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Middle_Ascending_Int(t *testing.T) {
-	quicksortMiddleAscendingTest[int](t)
+	quicksortMiddleAscendingTest[int8](t)
 }
 
 func TestQuickSort_Middle_Ascending_Int32(t *testing.T) {
@@ -77,7 +77,7 @@ func quicksortMiddleDescendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Middle_Descending_Int(t *testing.T) {
-	quicksortMiddleDescendingTest[int](t)
+	quicksortMiddleDescendingTest[int8](t)
 }
 
 func TestQuickSort_Middle_Descending_Int32(t *testing.T) {
@@ -107,7 +107,7 @@ func quicksortMiddleSortOneThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Middle_SortOneThirds_Int(t *testing.T) {
-	quicksortMiddleSortOneThirdsTest[int](t)
+	quicksortMiddleSortOneThirdsTest[int8](t)
 }
 
 func TestQuickSort_Middle_SortOneThirds_Int32(t *testing.T) {
@@ -136,7 +136,7 @@ func quicksortMiddleSortTwoThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Middle_SortTwoThirds_Int(t *testing.T) {
-	quicksortMiddleSortTwoThirdsTest[int](t)
+	quicksortMiddleSortTwoThirdsTest[int8](t)
 }
 
 func TestQuickSort_Middle_SortTwoThirds_Int32(t *testing.T) {
@@ -167,7 +167,7 @@ func quicksortFirstRandomTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_First_Random_Int(t *testing.T) {
-	quicksortFirstRandomTest[int](t)
+	quicksortFirstRandomTest[int8](t)
 }
 
 func TestQuickSort_First_Random_Int32(t *testing.T) {
@@ -198,7 +198,7 @@ func quicksortFirstAscendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_First_Ascending_Int(t *testing.T) {
-	quicksortFirstAscendingTest[int](t)
+	quicksortFirstAscendingTest[int8](t)
 }
 
 func TestQuickSort_First_Ascending_Int32(t *testing.T) {
@@ -229,7 +229,7 @@ func quicksortFirstDescendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_First_Descending_Int(t *testing.T) {
-	quicksortFirstDescendingTest[int](t)
+	quicksortFirstDescendingTest[int8](t)
 }
 
 func TestQuickSort_First_Descending_Int32(t *testing.T) {
@@ -260,7 +260,7 @@ func quicksortFirstSortOneThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_First_SortOneThirds_Int(t *testing.T) {
-	quicksortFirstSortOneThirdsTest[int](t)
+	quicksortFirstSortOneThirdsTest[int8](t)
 }
 
 func TestQuickSort_First_SortOneThirds_Int32(t *testing.T) {
@@ -290,7 +290,7 @@ func quicksortFirstSortTwoThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_First_SortTwoThirds_Int(t *testing.T) {
-	quicksortFirstSortTwoThirdsTest[int](t)
+	quicksortFirstSortTwoThirdsTest[int8](t)
 }
 
 func TestQuickSort_First_SortTwoThirds_Int32(t *testing.T) {
@@ -321,7 +321,7 @@ func quicksortLastRandomTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Last_Random_Int(t *testing.T) {
-	quicksortLastRandomTest[int](t)
+	quicksortLastRandomTest[int8](t)
 }
 
 func TestQuickSort_Last_Random_Int32(t *testing.T) {
@@ -352,7 +352,7 @@ func quicksortLastAscendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Last_Ascending_Int(t *testing.T) {
-	quicksortLastAscendingTest[int](t)
+	quicksortLastAscendingTest[int8](t)
 }
 
 func TestQuickSort_Last_Ascending_Int32(t *testing.T) {
@@ -383,7 +383,7 @@ func quicksortLastDescendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Last_Descending_Int(t *testing.T) {
-	quicksortLastDescendingTest[int](t)
+	quicksortLastDescendingTest[int8](t)
 }
 
 func TestQuickSort_Last_Descending_Int32(t *testing.T) {
@@ -414,7 +414,7 @@ func quicksortLastSortOneThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Last_SortOneThirds_Int(t *testing.T) {
-	quicksortLastSortOneThirdsTest[int](t)
+	quicksortLastSortOneThirdsTest[int8](t)
 }
 
 func TestQuickSort_Last_SortOneThirds_Int32(t *testing.T) {
@@ -444,7 +444,7 @@ func quicksortLastSortTwoThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Last_SortTwoThirds_Int(t *testing.T) {
-	quicksortLastSortTwoThirdsTest[int](t)
+	quicksortLastSortTwoThirdsTest[int8](t)
 }
 
 func TestQuickSort_Last_SortTwoThirds_Int32(t *testing.T) {
@@ -475,7 +475,7 @@ func quicksortRandomRandomTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Random_Random_Int(t *testing.T) {
-	quicksortRandomRandomTest[int](t)
+	quicksortRandomRandomTest[int8](t)
 }
 
 func TestQuickSort_Random_Random_Int32(t *testing.T) {
@@ -506,7 +506,7 @@ func quicksortRandomAscendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Random_Ascending_Int(t *testing.T) {
-	quicksortRandomAscendingTest[int](t)
+	quicksortRandomAscendingTest[int8](t)
 }
 
 func TestQuickSort_Random_Ascending_Int32(t *testing.T) {
@@ -537,7 +537,7 @@ func quicksortRandomDescendingTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Random_Descending_Int(t *testing.T) {
-	quicksortRandomDescendingTest[int](t)
+	quicksortRandomDescendingTest[int8](t)
 }
 
 func TestQuickSort_Random_Descending_Int32(t *testing.T) {
@@ -568,7 +568,7 @@ func quicksortRandomSortOneThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Random_SortOneThirds_Int(t *testing.T) {
-	quicksortRandomSortOneThirdsTest[int](t)
+	quicksortRandomSortOneThirdsTest[int8](t)
 }
 
 func TestQuickSort_Random_SortOneThirds_Int32(t *testing.T) {
@@ -598,7 +598,7 @@ func quicksortRandomSortTwoThirdsTest[T algo.AllowedTypes](t *testing.T) {
 }
 
 func TestQuickSort_Random_SortTwoThirds_Int(t *testing.T) {
-	quicksortRandomSortTwoThirdsTest[int](t)
+	quicksortRandomSortTwoThirdsTest[int8](t)
 }
 
 func TestQuickSort_Random_SortTwoThirds_Int32(t *testing.T) {

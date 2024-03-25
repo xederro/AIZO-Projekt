@@ -11,7 +11,7 @@ import (
 
 // AllowedTypes is an interface that allows to use only int64, int32, float32, float64 types
 type AllowedTypes interface {
-	int64 | int32 | float64 | float32 | int
+	int64 | int32 | int8 | int | float64 | float32
 }
 
 // Array is a generic type that allows to create an array of AllowedTypes
@@ -35,17 +35,17 @@ func (arr Array[T]) PopulateWithRandomValues() Array[T] {
 	switch t.Kind() {
 	case reflect.Int64:
 		for i := 0; i < len(arr); i++ {
-			arr[i] = T(rand.Int64N(255))
+			arr[i] = T(rand.Uint64())
 		}
 		break
 	case reflect.Int32:
 		for i := 0; i < len(arr); i++ {
-			arr[i] = T(rand.Int32())
+			arr[i] = T(rand.Uint32())
 		}
 		break
-	case reflect.Int:
+	case reflect.Int8:
 		for i := 0; i < len(arr); i++ {
-			arr[i] = T(rand.Int())
+			arr[i] = T(rand.IntN(256))
 		}
 		break
 	case reflect.Float64:

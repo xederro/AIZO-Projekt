@@ -12,7 +12,7 @@ func heapsortRandom[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkHeapSort_Random_Int(b *testing.B) {
-	heapsortRandom[int](b)
+	heapsortRandom[int8](b)
 }
 
 func BenchmarkHeapSort_Random_Int32(b *testing.B) {
@@ -38,7 +38,7 @@ func heapsortAscending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkHeapSort_Ascending_Int(b *testing.B) {
-	heapsortAscending[int](b)
+	heapsortAscending[int8](b)
 }
 
 func BenchmarkHeapSort_Ascending_Int32(b *testing.B) {
@@ -64,7 +64,7 @@ func heapsortDescending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkHeapSort_Descending_Int(b *testing.B) {
-	heapsortDescending[int](b)
+	heapsortDescending[int8](b)
 }
 
 func BenchmarkHeapSort_Descending_Int32(b *testing.B) {
@@ -90,7 +90,7 @@ func heapsortSortOneThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkHeapSort_SortOneThirds_Int(b *testing.B) {
-	heapsortSortOneThirds[int](b)
+	heapsortSortOneThirds[int8](b)
 }
 
 func BenchmarkHeapSort_SortOneThirds_Int32(b *testing.B) {
@@ -115,7 +115,7 @@ func heapsortSortTwoThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkHeapSort_SortTwoThirds_Int(b *testing.B) {
-	heapsortSortTwoThirds[int](b)
+	heapsortSortTwoThirds[int8](b)
 }
 
 func BenchmarkHeapSort_SortTwoThirds_Int32(b *testing.B) {

@@ -12,7 +12,7 @@ func shellsortShellRandom[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Shell_Random_Int(b *testing.B) {
-	shellsortShellRandom[int](b)
+	shellsortShellRandom[int8](b)
 }
 
 func BenchmarkShellSort_Shell_Random_Int32(b *testing.B) {
@@ -38,7 +38,7 @@ func shellsortShellAscending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Shell_Ascending_Int(b *testing.B) {
-	shellsortShellAscending[int](b)
+	shellsortShellAscending[int8](b)
 }
 
 func BenchmarkShellSort_Shell_Ascending_Int32(b *testing.B) {
@@ -64,7 +64,7 @@ func shellsortShellDescending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Shell_Descending_Int(b *testing.B) {
-	shellsortShellDescending[int](b)
+	shellsortShellDescending[int8](b)
 }
 
 func BenchmarkShellSort_Shell_Descending_Int32(b *testing.B) {
@@ -90,7 +90,7 @@ func shellsortShellSortOneThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Shell_SortOneThirds_Int(b *testing.B) {
-	shellsortShellSortOneThirds[int](b)
+	shellsortShellSortOneThirds[int8](b)
 }
 
 func BenchmarkShellSort_Shell_SortOneThirds_Int32(b *testing.B) {
@@ -115,7 +115,7 @@ func shellsortShellSortTwoThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Shell_SortTwoThirds_Int(b *testing.B) {
-	shellsortShellSortTwoThirds[int](b)
+	shellsortShellSortTwoThirds[int8](b)
 }
 
 func BenchmarkShellSort_Shell_SortTwoThirds_Int32(b *testing.B) {
@@ -141,7 +141,7 @@ func shellsortLazarusRandom[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Lazarus_Random_Int(b *testing.B) {
-	shellsortLazarusRandom[int](b)
+	shellsortLazarusRandom[int8](b)
 }
 
 func BenchmarkShellSort_Lazarus_Random_Int32(b *testing.B) {
@@ -167,7 +167,7 @@ func shellsortLazarusAscending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Lazarus_Ascending_Int(b *testing.B) {
-	shellsortLazarusAscending[int](b)
+	shellsortLazarusAscending[int8](b)
 }
 
 func BenchmarkShellSort_Lazarus_Ascending_Int32(b *testing.B) {
@@ -193,7 +193,7 @@ func shellsortLazarusDescending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Lazarus_Descending_Int(b *testing.B) {
-	shellsortLazarusDescending[int](b)
+	shellsortLazarusDescending[int8](b)
 }
 
 func BenchmarkShellSort_Lazarus_Descending_Int32(b *testing.B) {
@@ -219,7 +219,7 @@ func shellsortLazarusSortOneThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Lazarus_SortOneThirds_Int(b *testing.B) {
-	shellsortLazarusSortOneThirds[int](b)
+	shellsortLazarusSortOneThirds[int8](b)
 }
 
 func BenchmarkShellSort_Lazarus_SortOneThirds_Int32(b *testing.B) {
@@ -244,7 +244,7 @@ func shellsortLazarusSortTwoThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkShellSort_Lazarus_SortTwoThirds_Int(b *testing.B) {
-	shellsortLazarusSortTwoThirds[int](b)
+	shellsortLazarusSortTwoThirds[int8](b)
 }
 
 func BenchmarkShellSort_Lazarus_SortTwoThirds_Int32(b *testing.B) {

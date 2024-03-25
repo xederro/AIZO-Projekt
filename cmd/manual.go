@@ -16,7 +16,7 @@ import (
 
 const (
 	// Constants for types of values
-	INT = iota
+	INT8 = iota
 	INT32
 	INT64
 	FLOAT32
@@ -73,12 +73,12 @@ func manual() {
 // startWithFile is a function that reads values from file
 func startWithFile(typ int, path string) {
 	switch typ {
-	case INT:
-		arr, err := utils.ReadFile[int](path)
+	case INT8:
+		arr, err := utils.ReadFile[int8](path)
 		if err != nil {
 			log.Fatalln("Invalid file or path")
 		}
-		menu[int](arr)
+		menu[int8](arr)
 		break
 	case INT32:
 		arr, err := utils.ReadFile[int32](path)
@@ -138,9 +138,9 @@ func startWithGenerate(typ int) {
 	}
 
 	switch typ {
-	case INT:
-		arr := populate[int](leng)
-		menu[int](arr)
+	case INT8:
+		arr := populate[int8](leng)
+		menu[int8](arr)
 		break
 	case INT32:
 		arr := populate[int32](leng)
@@ -228,7 +228,7 @@ func getType() int {
 			huh.NewSelect[int]().
 				Title("Choose type").
 				Options(
-					huh.NewOption("int", INT).Selected(true),
+					huh.NewOption("int8", INT8).Selected(true),
 					huh.NewOption("int32", INT32),
 					huh.NewOption("int64", INT64),
 					huh.NewOption("float32", FLOAT32),

@@ -1,13 +1,13 @@
 # Algorytmy i złożoność obliczeniowa
 
-## Wymagania:
+## Requirements:
 - Python
 - Matplotlib
 - numpy
 - go 1.22
 - make
 
-## Uruchomienie:
+## How to run program:
 ```bash
 make
 ```

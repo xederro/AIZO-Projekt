@@ -12,7 +12,7 @@ func quicksortRandom[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkQuickSort_Random_Int(b *testing.B) {
-	quicksortRandom[int](b)
+	quicksortRandom[int8](b)
 }
 
 func BenchmarkQuickSort_Random_Int32(b *testing.B) {
@@ -38,7 +38,7 @@ func quicksortAscending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkQuickSort_Ascending_Int(b *testing.B) {
-	quicksortAscending[int](b)
+	quicksortAscending[int8](b)
 }
 
 func BenchmarkQuickSort_Ascending_Int32(b *testing.B) {
@@ -64,7 +64,7 @@ func quicksortDescending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkQuickSort_Descending_Int(b *testing.B) {
-	quicksortDescending[int](b)
+	quicksortDescending[int8](b)
 }
 
 func BenchmarkQuickSort_Descending_Int32(b *testing.B) {
@@ -90,7 +90,7 @@ func quicksortSortOneThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkQuickSort_SortOneThirds_Int(b *testing.B) {
-	quicksortSortOneThirds[int](b)
+	quicksortSortOneThirds[int8](b)
 }
 
 func BenchmarkQuickSort_SortOneThirds_Int32(b *testing.B) {
@@ -115,7 +115,7 @@ func quicksortSortTwoThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkQuickSort_SortTwoThirds_Int(b *testing.B) {
-	quicksortSortTwoThirds[int](b)
+	quicksortSortTwoThirds[int8](b)
 }
 
 func BenchmarkQuickSort_SortTwoThirds_Int32(b *testing.B) {

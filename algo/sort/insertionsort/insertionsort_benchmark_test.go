@@ -12,7 +12,7 @@ func insertionsortRandom[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkInsertionSort_Random_Int(b *testing.B) {
-	insertionsortRandom[int](b)
+	insertionsortRandom[int8](b)
 }
 
 func BenchmarkInsertionSort_Random_Int32(b *testing.B) {
@@ -38,7 +38,7 @@ func insertionsortAscending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkInsertionSort_Ascending_Int(b *testing.B) {
-	insertionsortAscending[int](b)
+	insertionsortAscending[int8](b)
 }
 
 func BenchmarkInsertionSort_Ascending_Int32(b *testing.B) {
@@ -64,7 +64,7 @@ func insertionsortDescending[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkInsertionSort_Descending_Int(b *testing.B) {
-	insertionsortDescending[int](b)
+	insertionsortDescending[int8](b)
 }
 
 func BenchmarkInsertionSort_Descending_Int32(b *testing.B) {
@@ -90,7 +90,7 @@ func insertionsortSortOneThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkInsertionSort_SortOneThirds_Int(b *testing.B) {
-	insertionsortSortOneThirds[int](b)
+	insertionsortSortOneThirds[int8](b)
 }
 
 func BenchmarkInsertionSort_SortOneThirds_Int32(b *testing.B) {
@@ -115,7 +115,7 @@ func insertionsortSortTwoThirds[T algo.AllowedTypes](b *testing.B) {
 }
 
 func BenchmarkInsertionSort_SortTwoThirds_Int(b *testing.B) {
-	insertionsortSortTwoThirds[int](b)
+	insertionsortSortTwoThirds[int8](b)
 }
 
 func BenchmarkInsertionSort_SortTwoThirds_Int32(b *testing.B) {
