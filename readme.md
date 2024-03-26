@@ -12,6 +12,18 @@
 make
 ```
 
+or for manual tests
+
+```bash
+make manual
+```
+
+or for automated tests
+
+```bash
+make auto
+```
+
 ### Build
 ```bash
 make build

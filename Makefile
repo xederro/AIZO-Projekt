@@ -1,7 +1,10 @@
 SHELL=cmd.exe
-.PHONY: build run plot prof prod test bench
+.PHONY: build run plot prof prod test bench manual auto
 
-all: prod run plot
+manual: build
+	.\cmd.exe
+
+auto: prod run plot
 
 build:
 	go build .\cmd
