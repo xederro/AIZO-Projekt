@@ -102,7 +102,7 @@ func Test(test *TestConfig) {
 func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
 	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Middle Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Random;Middle Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -115,7 +115,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Ascending Middle Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Ascending;Middle Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -128,7 +128,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Descending Middle Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Descending;Middle Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -141,7 +141,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 1 over 3 Middle Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 1 over 3;Middle Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -154,7 +154,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 2 over 3 Middle Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 2 over 3;Middle Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -167,7 +167,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Random Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Random;Random Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -180,7 +180,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Ascending Random Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Ascending;Random Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -193,7 +193,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Descending Random Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Descending;Random Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -206,7 +206,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 1 over 3 Random Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 1 over 3;Random Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -219,7 +219,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 2 over 3 Random Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 2 over 3;Random Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -232,7 +232,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" First Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Random;First Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -245,7 +245,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Ascending First Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Ascending;First Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -258,7 +258,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Descending First Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Descending;First Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -271,7 +271,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 1 over 3 First Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 1 over 3;First Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -284,7 +284,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 2 over 3 First Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 2 over 3;First Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -297,7 +297,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Last Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Random;Last Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -310,7 +310,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Ascending Last Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Ascending;Last Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -323,7 +323,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted Descending Last Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted Descending;Last Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -336,7 +336,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 1 over 3 Last Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 1 over 3;Last Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -349,7 +349,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("QuickSort "+typeName+" Sorted 2 over 3 Last Pivot", true).
+			framework.NewTTO("QuickSort;"+typeName+";Sorted 2 over 3;Last Pivot", true).
 				SetBefore(func(size int) any {
 					return quicksort.NewQuickSort[T](
 						algo.NewArray[T](size).
@@ -367,7 +367,7 @@ func TestQuickSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
 	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
-			framework.NewTTO("InsertionSort "+typeName, true).
+			framework.NewTTO("InsertionSort;"+typeName+";Random;", true).
 				SetBefore(func(size int) any {
 					return insertionsort.NewInsertionSort[T](
 						algo.NewArray[T](size).
@@ -380,7 +380,7 @@ func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string,
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("InsertionSort "+typeName+" Sorted Ascending", true).
+			framework.NewTTO("InsertionSort;"+typeName+";Sorted Ascending;", true).
 				SetBefore(func(size int) any {
 					return insertionsort.NewInsertionSort[T](
 						algo.NewArray[T](size).
@@ -393,7 +393,7 @@ func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string,
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("InsertionSort "+typeName+" Sorted Descending", true).
+			framework.NewTTO("InsertionSort;"+typeName+";Sorted Descending;", true).
 				SetBefore(func(size int) any {
 					return insertionsort.NewInsertionSort[T](
 						algo.NewArray[T](size).
@@ -406,7 +406,7 @@ func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string,
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("InsertionSort "+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("InsertionSort;"+typeName+";Sorted 1 over 3;", true).
 				SetBefore(func(size int) any {
 					return insertionsort.NewInsertionSort[T](
 						algo.NewArray[T](size).
@@ -419,7 +419,7 @@ func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string,
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("InsertionSort "+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("InsertionSort;"+typeName+";Sorted 2 over 3;", true).
 				SetBefore(func(size int) any {
 					return insertionsort.NewInsertionSort[T](
 						algo.NewArray[T](size).
@@ -437,7 +437,7 @@ func TestInsertionSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string,
 func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
 	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
-			framework.NewTTO("HeapSort "+typeName, true).
+			framework.NewTTO("HeapSort;"+typeName+";Random;", true).
 				SetBefore(func(size int) any {
 					return heapsort.NewHeapSort[T](
 						algo.NewArray[T](size).
@@ -450,7 +450,7 @@ func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, test
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("HeapSort "+typeName+" Sorted Ascending", true).
+			framework.NewTTO("HeapSort;"+typeName+";Sorted Ascending;", true).
 				SetBefore(func(size int) any {
 					return heapsort.NewHeapSort[T](
 						algo.NewArray[T](size).
@@ -463,7 +463,7 @@ func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, test
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("HeapSort "+typeName+" Sorted Descending", true).
+			framework.NewTTO("HeapSort;"+typeName+";Sorted Descending;", true).
 				SetBefore(func(size int) any {
 					return heapsort.NewHeapSort[T](
 						algo.NewArray[T](size).
@@ -476,7 +476,7 @@ func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, test
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("HeapSort "+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("HeapSort;"+typeName+";Sorted 1 over 3;", true).
 				SetBefore(func(size int) any {
 					return heapsort.NewHeapSort[T](
 						algo.NewArray[T](size).
@@ -489,7 +489,7 @@ func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, test
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("HeapSort "+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("HeapSort;"+typeName+";Sorted 2 over 3;", true).
 				SetBefore(func(size int) any {
 					return heapsort.NewHeapSort[T](
 						algo.NewArray[T](size).
@@ -507,7 +507,7 @@ func TestHeapSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, test
 func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, testCount int, testSizes ...int) {
 	framework.NewTimeTestHarness(testCount, testSizes...).
 		AddTest(
-			framework.NewTTO("ShellSort Shell "+typeName, true).
+			framework.NewTTO("ShellSort;"+typeName+";Random;Shell", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -520,7 +520,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell "+typeName+" Sorted Ascending", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted Ascending;Shell", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -533,7 +533,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell "+typeName+" Sorted Descending", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted Descending;Shell", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -546,7 +546,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell "+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted 1 over 3;Shell", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -559,7 +559,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Shell "+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted 2 over 3;Shell", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -572,7 +572,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus "+typeName, true).
+			framework.NewTTO("ShellSort;"+typeName+";Random;Lazarus", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -585,7 +585,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted Ascending", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted Ascending;Lazarus", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -598,7 +598,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted Descending", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted Descending;Lazarus", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -611,7 +611,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted 1 over 3", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted 1 over 3;Lazarus", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
@@ -624,7 +624,7 @@ func TestShellSort[T algo.AllowedTypes](wg *sync.WaitGroup, typeName string, tes
 				SetAfter(IsSorted[T]),
 		).
 		AddTest(
-			framework.NewTTO("ShellSort Lazarus "+typeName+" Sorted 2 over 3", true).
+			framework.NewTTO("ShellSort;"+typeName+";Sorted 2 over 3;Lazarus", true).
 				SetBefore(func(size int) any {
 					return shellsort.NewShellSort[T](
 						algo.NewArray[T](size).
